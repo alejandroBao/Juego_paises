@@ -1,22 +1,33 @@
 {
-  "name": "vite-eslint-prettier-template",
-  "private": true,
+  "name": "planificador",
   "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Angel",
   "type": "module",
+  "main": "index.js",
   "scripts": {
+    "test": "vitest",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,html,md}\""
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "e2e": "playwright test",
+    "e2e:headed": "playwright test --headed",
+    "e2e:ui": "playwright test --ui"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
-    "prettier": "^3.2.5",
-    "vite": "^5.2.0"
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.2",
+    "eslint": "^10.10.0",
+    "prettier": "^3.9.8",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "dayjs": "^1.11.23"
   }
 }
