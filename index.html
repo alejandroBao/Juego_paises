@@ -1,13 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vite-project</title>
+    <title>Adivinador</title>
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <main class="juego">
+      <h1>Adivina la población</h1>
+
+      <p class="instrucciones">
+        Se muestra un país con su bandera y hay que adivinar su población
+        <br />3 intentos por país <br />Se acierta con un margen del 20%
+      </p>
+
+      <section id="resultado" class="resultado"></section>
+
+      <form id="form" class="formulario">
+        <label for="intento">Población estimada</label>
+        <input id="intento" type="number" min="0" required />
+        <button type="submit">Adivinar</button>
+      </form>
+    </main>
+    <script type="module" src="/src/app.js"></script>
   </body>
 </html>
