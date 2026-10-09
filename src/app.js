@@ -13,15 +13,16 @@ let ronda = 0
 let intentos = 0
 let paisActual = null
 let juegoActivo = false
+let mensajes = []
 
 form.addEventListener('submit', adivinar)
 
-function mostrarPais(mensaje = '') {
+function mostrarPais() {
   resultado.innerHTML = `
     <p>Ronda ${ronda}/${MAX_RONDAS} · Intentos restantes: ${intentos}</p>
-    <h2>${paisActual.name}</h2>
+    <h2>${paisActual.names.common}</h2>
     <img src="${paisActual.flag.url_svg}" width="200" />
-    <p>${mensaje}</p>
+     ${mensajes.map((m) => `<p>${m}</p>`).join('')}
   `
 }
 
@@ -48,18 +49,19 @@ function adivinar(event) {
     juegoActivo = false
     return terminar(false, real)
   }
-  mostrarPais(
+  mensajes.push(
     guess < real
-      ? '❌ Te quedaste corto... Prueba con más!'
-      : '❌ Te pasaste! Prueba con menos...',
+      ? `❌ ${guess.toLocaleString()}: Te quedaste corto... Prueba con más!`
+      : `❌ ${guess.toLocaleString()}: Te pasaste! Prueba con menos...`,
   )
+  mostrarPais()
 }
 
 function terminar(gano, real) {
   resultado.innerHTML = gano
     ? `<h2>🏆 Ganaste ${MAX_RONDAS} rondas!!!</h2>`
-    : `<h2>💀 Perdiste. ${paisActual.name} tiene ${real.toLocaleString()} gente</h2>`
-  resultado.innerHTML += `<button id="reiniciar">Jugar otra vez</button>`
+    : `<h2>💀 Perdiste. ${paisActual.names.common} tiene ${real.toLocaleString()} habitantes</h2>`
+  resultado.innerHTML += '<button id="reiniciar">Jugar otra vez</button>'
   document.querySelector('#reiniciar').addEventListener('click', () => {
     ronda = 0
     iniciarRonda()
@@ -83,6 +85,7 @@ async function obtenerPaisAleatorio() {
 async function iniciarRonda() {
   ronda++
   intentos = MAX_INTENTOS
+  mensajes = []
   juegoActivo = false
   resultado.innerHTML = '<p>Buscando país...</p>'
 
