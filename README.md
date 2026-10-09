@@ -7,7 +7,6 @@ git clone https://github.com/alejandroBao/Juego_paises.git
 ## Instalar las dependencias del proyecto
 
 ```
-cd vite-project
 npm install
 ```
 
